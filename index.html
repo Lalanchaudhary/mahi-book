@@ -1,476 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mahi Studio</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090807">
+  <meta name="description" content="Book your next experience at MAHI STUDIO STUDIO and enjoy 12% off your first booking.">
+  <title>MAHI STUDIO STUDIO — 12% off your first booking</title>
   <style>
-    :root {
-      --ink: #101114;
-      --muted: #60646f;
-      --paper: #fffaf2;
-      --line: #e8dfcf;
-      --green: #69ad45;
-      --orange: #ff7724;
-      --blue: #2e2fc4;
-      --red: #ff3434;
-      --white: #ffffff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--paper);
-      font-family: Arial, Helvetica, sans-serif;
-      line-height: 1.5;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 16px clamp(18px, 5vw, 70px);
-      background: rgba(255, 250, 242, 0.94);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(14px);
-    }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      font-weight: 900;
-      letter-spacing: 0;
-      line-height: 1;
-    }
-
-    .brand span:first-child {
-      color: var(--green);
-      font-size: clamp(22px, 3vw, 34px);
-      text-shadow: 2px 2px 0 #000;
-    }
-
-    .brand span:last-child {
-      color: var(--orange);
-      font-size: clamp(20px, 2.6vw, 30px);
-      text-shadow: 2px 2px 0 #000;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: clamp(12px, 2vw, 28px);
-      color: #30323a;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .nav a {
-      padding: 8px 0;
-    }
-
-    .cta {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 12px 18px;
-      border-radius: 7px;
-      color: var(--white);
-      background: var(--orange);
-      font-weight: 800;
-      box-shadow: 0 10px 24px rgba(255, 119, 36, 0.24);
-    }
-
-    .hero {
-      min-height: calc(100vh - 78px);
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(300px, 430px);
-      align-items: center;
-      gap: clamp(28px, 5vw, 72px);
-      padding: clamp(34px, 7vw, 82px) clamp(18px, 5vw, 70px);
-      background:
-        linear-gradient(135deg, rgba(46, 47, 196, 0.12), transparent 38%),
-        linear-gradient(315deg, rgba(105, 173, 69, 0.16), transparent 35%),
-        var(--paper);
-    }
-
-    .hero-copy {
-      max-width: 760px;
-    }
-
-    .eyebrow {
-      margin: 0 0 14px;
-      color: var(--red);
-      font-weight: 900;
-      text-transform: uppercase;
-      font-size: 13px;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-      max-width: 700px;
-      font-size: clamp(48px, 8vw, 96px);
-      line-height: 0.95;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      max-width: 600px;
-      color: #373a44;
-      font-size: clamp(18px, 2vw, 23px);
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 11px 18px;
-      border: 2px solid var(--ink);
-      border-radius: 7px;
-      font-weight: 800;
-      background: var(--white);
-    }
-
-    .hero-poster {
-      overflow: hidden;
-      border-radius: 8px;
-      border: 1px solid rgba(16, 17, 20, 0.12);
-      box-shadow: 0 24px 60px rgba(16, 17, 20, 0.18);
-      background: #121161;
-    }
-
-    .hero-poster img {
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      object-fit: cover;
-    }
-
-    section {
-      padding: clamp(44px, 7vw, 84px) clamp(18px, 5vw, 70px);
-    }
-
-    .section-head {
-      max-width: 760px;
-      margin-bottom: 30px;
-    }
-
-    h2 {
-      margin-bottom: 10px;
-      font-size: clamp(32px, 5vw, 58px);
-      line-height: 1;
-    }
-
-    .section-head p {
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    .services {
-      background: var(--white);
-    }
-
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .service {
-      min-height: 190px;
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fffdf8;
-    }
-
-    .service strong {
-      display: block;
-      margin-bottom: 10px;
-      font-size: 21px;
-    }
-
-    .service p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .band {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 26px;
-      align-items: stretch;
-      color: var(--white);
-      background: var(--ink);
-    }
-
-    .band-panel {
-      padding: clamp(24px, 4vw, 42px);
-      border-radius: 8px;
-      background: #1c1d23;
-    }
-
-    .band-panel:nth-child(2) {
-      background: var(--blue);
-    }
-
-    .band-panel h2 {
-      font-size: clamp(28px, 4vw, 48px);
-    }
-
-    .band-panel p {
-      margin-bottom: 0;
-      color: rgba(255, 255, 255, 0.82);
-      font-size: 18px;
-    }
-
-    .contact {
-      display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(280px, 1.1fr);
-      gap: clamp(24px, 5vw, 70px);
-      align-items: center;
-      background: linear-gradient(90deg, #fffaf2 0%, #fffaf2 50%, #ffe9db 50%, #ffe9db 100%);
-    }
-
-    .contact-list {
-      display: grid;
-      gap: 14px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      color: #353844;
-      font-weight: 700;
-    }
-
-    .contact-list li {
-      padding: 16px 18px;
-      border-left: 5px solid var(--orange);
-      background: var(--white);
-    }
-
-    .whatsapp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      margin-top: 24px;
-      min-height: 50px;
-      padding: 14px 22px;
-      border-radius: 7px;
-      color: var(--white);
-      background: #16b956;
-      font-size: 17px;
-      font-weight: 900;
-    }
-
-    .whatsapp-float {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 20;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      min-height: 56px;
-      padding: 12px 20px;
-      border: 2px solid var(--white);
-      border-radius: 999px;
-      color: #087b37;
-      background: linear-gradient(120deg, #ffffff 0%, #e9ffef 35%, #22c55e 68%, #ffffff 100%);
-      background-size: 250% 250%;
-      animation: whatsapp-color-flow 4s ease-in-out infinite;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-    .whatsapp-float:hover {
-      color: #065f2b;
-      transform: translateY(-2px);
-    }
-
-    @keyframes whatsapp-color-flow {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .whatsapp-float { animation: none; }
-    }
-
-    .whatsapp-float svg {
-      width: 24px;
-      height: 24px;
-      fill: currentColor;
-      flex: 0 0 auto;
-    }
-
-    footer {
-      padding: 22px clamp(18px, 5vw, 70px);
-      color: rgba(255, 255, 255, 0.78);
-      background: var(--ink);
-      font-size: 14px;
-    }
-
-    @media (max-width: 820px) {
-      .site-header {
-        position: static;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        padding: 12px 14px;
-        color: var(--ink);
-        background: var(--white);
-        border-bottom: 1px solid var(--line);
-        backdrop-filter: none;
-      }
-
-      .brand span:first-child,
-      .brand span:last-child {
-        font-size: 18px;
-      }
-
-      .nav {
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        gap: 8px;
-        color: var(--ink);
-        font-size: 12px;
-        overflow-x: auto;
-        scrollbar-width: none;
-      }
-
-      .nav::-webkit-scrollbar {
-        display: none;
-      }
-
-      .nav a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 34px;
-        padding: 8px 10px;
-        border-radius: 7px;
-        white-space: nowrap;
-        background: #f3f0e9;
-      }
-
-      .nav .cta {
-        min-height: 34px;
-        padding: 8px 10px;
-        font-size: 12px;
-        white-space: nowrap;
-      }
-
-      .hero {
-        min-height: auto;
-        display: block;
-        padding: 28px 12px 12px;
-        background: #080911;
-      }
-
-      .hero-copy {
-        display: none;
-      }
-
-      .hero-poster {
-        width: 100%;
-        min-height: auto;
-        border: 0;
-        border-radius: 8px;
-        box-shadow: none;
-      }
-
-      .hero-poster img {
-        width: 100%;
-        height: auto;
-        min-height: calc(100vh - 154px);
-        aspect-ratio: auto;
-        object-fit: cover;
-        object-position: center top;
-        border-radius: 8px;
-      }
-
-      section {
-        padding: 44px 18px;
-      }
-
-      .service-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .service {
-        min-height: 0;
-      }
-
-      .band,
-      .contact {
-        grid-template-columns: 1fr;
-      }
-
-      .contact {
-        background: #ffe9db;
-      }
-    }
-
-    @media (max-width: 460px) {
-      .site-header {
-        align-items: center;
-      }
-
-      .brand span:first-child,
-      .brand span:last-child {
-        font-size: 16px;
-      }
-    }
+    :root { color-scheme: dark; --gold:#f7bd38; --cream:#fff1c0; --red:#a80d13; --ink:#090807; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; min-height:100vh; color:#fff; background:var(--ink); font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+    a { color:inherit; }
+    .page { min-height:100vh; overflow:hidden; position:relative; background:radial-gradient(ellipse at 50% 68%, #44220a 0, #17100b 34%, #090807 70%); }
+    .page:before,.page:after { content:""; position:absolute; pointer-events:none; }
+    .page:before { inset:16px; border:1px solid rgba(244,177,43,.38); clip-path:polygon(0 0, 36% 0, 50% 8%, 64% 0, 100% 0, 100% 100%, 0 100%); }
+    .page:after { width:110vw;height:70vw; max-height:740px; left:50%; bottom:-48%; transform:translateX(-50%); border:1px solid rgba(255,176,33,.3); border-radius:50%; box-shadow:0 0 60px rgba(240,145,13,.09), inset 0 0 50px rgba(240,145,13,.06); }
+    header { position:relative; z-index:1; display:flex; justify-content:space-between; align-items:center; max-width:1160px; margin:auto; padding:30px 32px; }
+    .brand { display:flex; gap:11px; align-items:center; font-size:13px; font-weight:800; letter-spacing:.2em; }
+    .brand-mark { display:grid; place-items:center; width:34px;height:34px; border:1px solid var(--gold); transform:rotate(45deg); color:var(--gold); font-family:Georgia,serif; font-size:18px; }
+    .brand-mark span { transform:rotate(-45deg); }
+    .nav-link { text-decoration:none; text-transform:uppercase; letter-spacing:.13em; font-size:11px; color:var(--cream); border-bottom:1px solid var(--gold); padding:8px 0; }
+    main { position:relative; z-index:1; min-height:calc(100vh - 100px); display:grid; place-items:center; padding:36px 22px 70px; }
+    .hero { width:min(100%, 780px); text-align:center; }
+    .eyebrow { display:flex; align-items:center; justify-content:center; gap:13px; color:var(--gold); font-size:10px; letter-spacing:.32em; text-transform:uppercase; }
+    .eyebrow:before,.eyebrow:after { content:""; width:44px;height:1px; background:linear-gradient(90deg,transparent,var(--gold)); }
+    .eyebrow:after { transform:scaleX(-1); }
+    h1 { margin:25px 0 4px; font-family:Georgia,"Times New Roman",serif; font-size:clamp(38px, 8vw, 82px); line-height:.95; letter-spacing:.035em; font-weight:700; color:#ffe8a0; background:linear-gradient(180deg,#fff8d5 3%,#ffe679 35%,#efa91c 68%,#fff0a9 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; filter:drop-shadow(0 4px 0 #6c2909) drop-shadow(0 12px 18px #000); }
+    .studio { margin:15px 0 0; text-transform:uppercase; font-size:12px; letter-spacing:.5em; color:#f6e7c5; }
+    .rule { width:min(80%,430px); margin:27px auto 23px; height:1px; background:linear-gradient(90deg,transparent,#b66c15,var(--gold),#b66c15,transparent); position:relative; }
+    .rule:after { content:"◆"; position:absolute; top:50%;left:50%; transform:translate(-50%,-50%) rotate(45deg); color:var(--gold); font-size:10px; background:#1a1009; padding:0 10px; }
+    .offer-label { margin:0 0 7px; color:#fff3d0; text-transform:uppercase; letter-spacing:.22em; font-size:12px; }
+    .discount { display:flex; align-items:center; justify-content:center; line-height:.9; margin:10px 0 18px; color:#ffd85f; text-shadow:0 4px 0 #792408,0 9px 0 #380d09,0 15px 32px #000; }
+    .discount strong { font-family:Georgia,"Times New Roman",serif; font-weight:800; font-size:clamp(105px, 23vw, 220px); letter-spacing:-.08em; background:linear-gradient(#fff7b6 5%,#ffc62e 45%,#f58a13 74%,#fff19a); color:transparent; -webkit-background-clip:text; background-clip:text; }
+    .discount span { font-family:Georgia,serif; font-size:clamp(42px, 10vw, 88px); align-self:flex-start; margin:12px 0 0 9px; color:#ffe078; }
+    .off { display:inline-block; background:linear-gradient(110deg,#870a0c,#e22017,#8d090b); border:1px solid #ffc34b; padding:10px 24px; margin-top:2px; font-size:17px; font-weight:900; letter-spacing:.2em; box-shadow:0 5px 0 #380908,0 10px 24px #0008; transform:skew(-7deg); }
+    .whatsapp { display:flex; width:max-content; min-height:46px; align-items:center; justify-content:center; gap:10px; margin:18px auto 0; padding:0 22px; border:1px solid #5ee28a; border-radius:4px; background:linear-gradient(135deg,#1cbd62,#078c4a); color:#fff; text-decoration:none; text-transform:uppercase; font-size:11px; font-weight:850; letter-spacing:.11em; box-shadow:0 6px 22px #0b9b5140; transition:transform .2s,filter .2s; }
+    .whatsapp:hover { transform:translateY(-2px); filter:brightness(1.1); }
+    .whatsapp svg { width:19px; height:19px; fill:currentColor; }
+    .copy { max-width:440px; margin:27px auto 24px; color:#d1c5af; font-size:14px; line-height:1.7; }
+    .cta { display:inline-flex; min-height:51px; align-items:center; justify-content:center; gap:13px; padding:0 26px; background:linear-gradient(135deg,#ffe68b,#e8a629 58%,#b96d14); color:#1a0c05; text-decoration:none; text-transform:uppercase; font-size:11px; font-weight:900; letter-spacing:.16em; border:1px solid #fff0b4; box-shadow:0 8px 26px #cc751c33; transition:transform .2s,filter .2s; }
+    .cta:hover { transform:translateY(-2px); filter:brightness(1.12); }
+    .cta span { font-size:18px; }
+    .fine { margin:18px 0 0; color:#978b75; font-size:10px; letter-spacing:.08em; }
+    footer { position:absolute; z-index:1; bottom:24px; width:100%; text-align:center; color:#88775e; font-size:9px; letter-spacing:.24em; text-transform:uppercase; }
+    @media (max-width:560px) { header { padding:23px 22px; } .brand { font-size:10px; letter-spacing:.14em; }.brand-mark { width:29px;height:29px; }.nav-link { font-size:9px; } main { padding-top:24px; padding-bottom:65px; } .studio { letter-spacing:.34em; } .copy { font-size:13px; } footer { bottom:15px; font-size:8px; } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *,*:before,*:after { transition:none !important; } }
   </style>
 <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18474709592"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18512182862"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'AW-18474709592');
+  gtag('config', 'AW-18512182862');
 </script>
 <!-- Event snippet for Outbound click conversion page
 In your html page, add the snippet and call gtag_report_conversion when someone clicks on the chosen link or button. -->
@@ -482,7 +66,7 @@ function gtag_report_conversion(url) {
     }
   };
   gtag('event', 'conversion', {
-      'send_to': 'AW-18474709592/z5scCIX9toYdENjktulE',
+      'send_to': 'AW-18512182862/aq5KCPKGqpwdEM78pftE',
       'value': 1.0,
       'currency': 'INR',
       'event_callback': callback
@@ -491,96 +75,32 @@ function gtag_report_conversion(url) {
 }
 </script>
 
+</head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="#home" aria-label="Mahi Studio home">
-      <span>Mahi</span>
-      <span>Studio</span>
-    </a>
-    <nav class="nav" aria-label="Primary navigation">
-      <a href="#services">Services</a>
-      <a href="#why">Why us</a>
-      <a href="#contact">Contact</a>
-      <a class="cta" href="#contact">Book Service</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero" id="home">
-      <div class="hero-copy">
-        <p class="eyebrow">Best service for your electronics</p>
-        <h1>Mahi Studio</h1>
-        <p class="lead">Creative, modern studio support for design, media, and visual projects.</p>
-        <div class="hero-actions">
-          <a class="cta" href="#contact">Contact Now</a>
-          <a class="secondary" href="#services">View Services</a>
-        </div>
-      </div>
-      <div class="hero-poster" aria-label="shadow Electronics service poster">
-        <a href="https://wa.me/917250919459?text=I%20WANT%20ID%20HERE.." onclick="return gtag_report_conversion(this.href)" rel="noopener noreferrer">
-          <img src="mahi.png" alt="Mahi Studio poster with WhatsApp click to chat">
+  <div class="page">
+    <header>
+      <a class="brand" href="#top" aria-label="MAHI STUDIO Studio home"><span class="brand-mark"><span>♛</span></span><span>MAHI STUDIO</span></a>
+      <a class="nav-link" href="#book">Reserve your date</a>
+    </header>
+    <main id="top">
+      <section class="hero" aria-labelledby="title">
+        <div class="eyebrow">A royal welcome awaits</div>
+        <h1 id="title">MAHI STUDIO</h1>
+        <p class="studio"></p>
+        <div class="rule"></div>
+        <p class="offer-label">Your first booking comes with</p>
+        <div class="discount" aria-label="12 percent"><strong>15</strong><span>%</span></div>
+        <div class="off">OFF</div>
+        <a class="whatsapp" href="https://wa.me/919773898353?text=I%20WANT%20ID%20HERE.." target="_blank" rel="noopener noreferrer" aria-label="Message MAHI STUDIO Studio on WhatsApp" onclick="return gtag_report_conversion(this.href)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.5 0 .15 5.35.15 11.93c0 2.1.55 4.16 1.6 5.97L.05 24l6.26-1.64a11.9 11.9 0 0 0 5.76 1.47h.01c6.58 0 11.93-5.35 11.93-11.93a11.86 11.86 0 0 0-3.49-8.42ZM12.08 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.72.98.99-3.63-.24-.37a9.86 9.86 0 0 1-1.52-5.26c0-5.47 4.45-9.92 9.93-9.92a9.86 9.86 0 0 1 7.02 2.91 9.86 9.86 0 0 1 2.91 7.02c0 5.48-4.45 9.93-9.92 9.93Zm5.45-7.43c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.95 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.8-1.49-1.78-1.67-2.08-.18-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.48-.5-.66-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.06 2.89 1.2 3.09c.15.2 2.1 3.2 5.08 4.48.71.31 1.27.5 1.7.63.72.23 1.37.2 1.88.12.58-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg>
+          Book on WhatsApp
         </a>
-      </div>
-    </section>
-
-    <section class="services" id="services">
-      <div class="section-head">
-        <h2>Services</h2>
-        <p>One place for dependable electronics care, from everyday fixes to installation support.</p>
-      </div>
-      <div class="service-grid">
-        <article class="service">
-          <strong>TV Service</strong>
-          <p>Display, sound, power, wall mounting, setup, and general troubleshooting.</p>
-        </article>
-        <article class="service">
-          <strong>Home Appliances</strong>
-          <p>Support for common household electronics and appliance repair needs.</p>
-        </article>
-        <article class="service">
-          <strong>Setup Help</strong>
-          <p>Installation, wiring, configuration, remote setup, and product guidance.</p>
-        </article>
-        <article class="service">
-          <strong>Fast Support</strong>
-          <p>Friendly local service with clear communication and practical solutions.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="band" id="why">
-      <div class="band-panel">
-        <h2>You are at the correct place.</h2>
-        <p>shadow Electronics keeps service simple: explain the issue, get clear guidance, and move toward a fix without confusion.</p>
-      </div>
-      <div class="band-panel">
-        <h2>Give us one chance.</h2>
-        <p>For repairs, installation, and support, reach out and get your electronics checked by a team that values time and trust.</p>
-      </div>
-    </section>
-
-    <section class="contact" id="contact">
-      <div>
-        <div class="section-head">
-          <h2>Contact</h2>
-          <p>Ready to book a service or ask about a repair? Send a message and share the product details.</p>
-        </div>
-        <a class="whatsapp" href="https://wa.me/917250919459?text=I%20WANT%20ID%20HERE.." onclick="return gtag_report_conversion(this.href)" rel="noopener">WhatsApp Click To Chat</a>
-      </div>
-      <ul class="contact-list">
-        <li>Business: Mahi Studio</li>
-        <li>Services: Creative studio work, design, and visual support</li>
-        <li>Availability: Call or WhatsApp for appointment timing</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2026 Mahi Studio. Creative work with a modern touch.
-  </footer>
-  <a class="whatsapp-float" href="https://wa.me/917250919459?text=I%20WANT%20ID%20HERE.." onclick="return gtag_report_conversion(this.href)" target="_blank" rel="noopener noreferrer" aria-label="Click to chat with Mahi Studio on WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.52 3.48A11.8 11.8 0 0 0 12.12 0C5.57 0 .24 5.32.24 11.88c0 2.1.55 4.15 1.6 5.96L.14 24l6.32-1.66a11.86 11.86 0 0 0 5.66 1.44h.01c6.55 0 11.88-5.33 11.88-11.88 0-3.17-1.23-6.15-3.49-8.42ZM12.13 21.76h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.75.98 1-3.66-.24-.38a9.86 9.86 0 0 1-1.52-5.23c0-5.46 4.45-9.9 9.91-9.9 2.64 0 5.12 1.03 6.99 2.9a9.84 9.84 0 0 1 2.9 7c0 5.46-4.44 9.9-9.89 9.9Zm5.43-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.08-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.48.71.31 1.27.5 1.7.64.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.29.17-1.42-.07-.12-.27-.2-.57-.35Z"/></svg>
-    <span>Click to chat</span>
-  </a>
+        <p class="copy">Make your first visit one to remember. Enjoy an exclusive 12% discount when you book with MAHI STUDIO Studio.</p>
+        <a class="cta" id="book" href="mailto:hello@MAHI STUDIOstudio.com?subject=My%20first%20booking">Book your first visit <span aria-hidden="true">→</span></a>
+        <p class="fine">New bookings only · Offer applied to your first appointment</p>
+      </section>
+    </main>
+    <footer>Make it memorable · MAHI STUDIO STUDIO</footer>
+  </div>
 </body>
 </html>
